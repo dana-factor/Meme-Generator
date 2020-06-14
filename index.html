@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/meme-editor.css">
+    <link rel="stylesheet" href="styles/gallery.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <title>Meme Generator</title>
+</head>
+
+<body onload="init()" onmouseup="toggleDragMode('off')">
+    <header>
+
+        <section class="header-container container flex justify-between align-center">
+
+            <img class="logo" src="img/LOGO.png">
+
+            <nav class="header-nav">
+                <button onclick="onDisplayGallery()" class="gallery-btn">Gallery</button>
+                <p class="seperator">|</p>
+                <button class="meme-btn" onclick="onDisplaySaved()">Memes</button>
+            </nav>
+            <button onclick="onToggleMenu()" class="menu-btn"><img src="icons/menu.svg"></button>
+
+        </section>
+
+    </header>
+
+    <main class="meme-editor" hidden>
+
+        <section class="meme-editor-container container">
+
+            <div class="canvas-container">
+                <canvas id="my-canvas" onmousedown="onSwitchLine(event)" onmousemove="onDrag(event)"></canvas>
+            </div>
+
+
+            <div class="control-box">
+                <input id="txt-to-draw" type="text" placeholder="enter text here" oninput="onInputChange()">
+
+                <button onclick="onSwitchLine(event)"><img src="icons/up-and-down.png"></button>
+                <button onclick="onAddLine()"><img src="icons/add.png"></button>
+                <button onclick="onRemoveLine()"><img src="icons/trash.png"></button>
+                <button onclick="onUpdateTextHeight('up')"><img src="icons/up.png"></button>
+                <button onclick="onUpdateTextHeight('down')"><img src="icons/down.png"></button>
+                <button onclick="onUpdateFontSize('increase')"><img src="icons/increase-font.png"></button>
+                <button onclick="onUpdateFontSize('decrease')"><img src="icons/decrease-font.png"></button>
+                <button onclick="onTextAlign('right')"><img src="icons/align-to-left.png"></button>
+                <button onclick="onTextAlign('center')"><img src="icons/align-to-center.png"></button>
+                <button onclick="onTextAlign('left')"><img src="icons/align-to-right.png"></button>
+                <select class="select-font" onchange="onSetFont(this.value)">
+                    <option class="impact" value="impact">Impact</option>
+                    <option class="monospace" value="monospace">Monospace</option>
+                    <option class="montserrat-regular" value="montserrat-regular">Montserrat</option>
+                    <option class="ariel" value="ariel">Ariel</option>
+                </select>
+                <button class="color"><img src="icons/text-stroke.png"><input type="color" class="color"
+                        name="stroke-color" value="#000000" onchange="onSetStrokeColor(this.value)"></button>
+
+                <button class="color"><img src="icons/fill-color.png"><input type="color" class="color"
+                        name="fill-color" value="#ffffff" onchange="onSetFillColor(this.value)"></button>
+                <div class="stickers">
+
+                </div>
+                <a href="#" class="download" onclick="onDownloadCanvas(this)" download="">Download</a>
+                <button class="save-btn" onclick="onSaveMeme()">Save</button>
+
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <main class="gallery">
+
+        <div class="keyword-filter"></div>
+
+        <section class="gallery-container container">
+            <div class="image-gallery">
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <main class="saved-meme-display">
+        <div class="saved-container container" hidden>
+            <div class="savedMemes"></div>
+        </div>
+    </main>
+
+
+    <footer class="flex-col justify-center align-center">
+        <img class="logo" src="img/logo.png">
+
+        <p>all rights reserved 2020</p>
+
+    </footer>
+
+    <script src="js/meme-storage.js"></script>
+    <script src="js/meme-service.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
